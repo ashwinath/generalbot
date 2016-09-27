@@ -18,4 +18,6 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.2.2.Final'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '1.4.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.3.RELEASE'
 }
