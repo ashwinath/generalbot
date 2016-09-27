@@ -1,15 +1,17 @@
 package weather.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Main {
     private double temp;
     private double pressure;
     private double humidity;
-    // not sure how to change the name
-    private double temp_min;
-    private double temp_max;
+    @JsonProperty(value="temp_min")
+    private double minTemp;
+    @JsonProperty(value="temp_max")
+    private double maxTemp;
 
     public double getTemp() {
         return temp;
@@ -35,20 +37,19 @@ public class Main {
         this.humidity = humidity;
     }
 
-    public double getTemp_min() {
-        return temp_min;
+    public double getMinTemp() {
+        return minTemp - 273.15;
     }
 
-    public void setTemp_min(double temp_min) {
-        this.temp_min = temp_min;
+    public void setMinTemp(double minTemp) {
+        this.minTemp = minTemp;
     }
 
-    public double getTemp_max() {
-        return temp_max;
+    public double getMaxTemp() {
+        return maxTemp - 273.15;
     }
 
-    public void setTemp_max(double temp_max) {
-        this.temp_max = temp_max;
+    public void setMaxTemp(double maxTemp) {
+        this.maxTemp = maxTemp;
     }
-
 }
