@@ -10,13 +10,12 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import telegram.utils.TelegramUtils;
 
-/**
- * Created by ashwin on 27/9/2016.
- */
 public class WeatherBot extends TelegramLongPollingBot {
+
     private final static Logger LOGGER = LoggerFactory.getLogger(WeatherBot.class);
-    private static final String BOT_USERNAME = "WeatherBot";
-    private static final String BOT_TOKEN = "***REMOVED***";
+    private String botUsername;
+    private String botToken;
+    private String openWeatherMapApiKey;
 
     public void onUpdateReceived(Update update) {
         if(update.hasMessage()) {
@@ -26,7 +25,7 @@ public class WeatherBot extends TelegramLongPollingBot {
                 LOGGER.info("Message received");
                 SendMessage sendMessageRequest = new SendMessage();
                 sendMessageRequest.setChatId(message.getChatId().toString());
-                sendMessageRequest.setText(TelegramUtils.getWeatherString("singapore"));
+                sendMessageRequest.setText(TelegramUtils.getWeatherString("singapore", openWeatherMapApiKey));
                 try {
                     sendMessage(sendMessageRequest);
                 } catch (TelegramApiException e) {
@@ -37,10 +36,24 @@ public class WeatherBot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return this.BOT_USERNAME;
+        return this.botUsername;
     }
 
-    public String getBotToken() {
-        return this.BOT_TOKEN;
+    public void setBotUsername(String botUserName) {
+        this.botUsername = botUserName;
     }
+
+    @Override
+    public String getBotToken() {
+        return this.botToken;
+    }
+
+    public void setBotToken(String botToken) {
+        this.botToken = botToken;
+    }
+
+    public void setOpenWeatherMapApiKey(String openWeatherMapApi) {
+        this.openWeatherMapApiKey = openWeatherMapApi;
+    }
+
 }

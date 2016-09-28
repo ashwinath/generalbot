@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--insert relevant apikeys/botname here-->
+    <bean id="weatherBot" class="telegram.WeatherBot">
+        <property name="botUsername" value="WeatherBot" />
+        <property name="botToken" value="HERE" />
+        <property name="openWeatherMapApiKey" value="HERE" />
+    </bean>
+
+</beans>
