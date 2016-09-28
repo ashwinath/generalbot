@@ -21,11 +21,28 @@ public class WeatherBot extends TelegramLongPollingBot {
         if(update.hasMessage()) {
             Message message = update.getMessage();
 
-            if(message.hasText() && StringUtils.equals(message.getText(), "/weather")) {
-                LOGGER.info("Message received");
+            String messageText = message.getText();
+            String command = StringUtils.substring(messageText, 0, 8);
+            if(message.hasText() && StringUtils.equals(command, "/weather")) {
                 SendMessage sendMessageRequest = new SendMessage();
                 sendMessageRequest.setChatId(message.getChatId().toString());
-                sendMessageRequest.setText(TelegramUtils.getWeatherString("singapore", openWeatherMapApiKey));
+                String country = StringUtils.substring(messageText, 9);
+
+                if (StringUtils.trim(country).length() == 0) {
+                    LOGGER.info("Message Received. No country specified");
+                    sendMessageRequest.setText("Please specify a country.");
+                } else {
+                    try {
+                        LOGGER.info("Message received. Country: " + country);
+                        String weatherString = TelegramUtils.getWeatherString(country, openWeatherMapApiKey);
+                        LOGGER.info("Return message: " + weatherString);
+                        sendMessageRequest.setText(weatherString);
+                    } catch (IllegalArgumentException e) {
+                        sendMessageRequest.setText("No such country.");
+                        LOGGER.warn("No such country.");
+                    }
+                }
+
                 try {
                     sendMessage(sendMessageRequest);
                 } catch (TelegramApiException e) {
