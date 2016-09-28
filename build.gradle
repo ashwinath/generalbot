@@ -1,7 +1,8 @@
 group 'telegramweather'
 version 'telegram-weather-1.0-SNAPSHOT'
 
-apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "telegram.MainTelegram"
 
 sourceCompatibility = 1.5
 
