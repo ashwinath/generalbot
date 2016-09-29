@@ -8,13 +8,13 @@ import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
 
 public class MainTelegram {
-    private final static Logger LOGGER = LoggerFactory.getLogger(WeatherBot.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(GeneralBot.class);
 
     public static void main(String... args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot(context.getBean("weatherBot", WeatherBot.class));
+            telegramBotsApi.registerBot(context.getBean("weatherBot", GeneralBot.class));
         } catch (TelegramApiException e) {
             LOGGER.error(e.toString());
         }

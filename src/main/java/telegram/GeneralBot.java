@@ -10,9 +10,9 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import telegram.utils.TelegramUtils;
 
-public class WeatherBot extends TelegramLongPollingBot {
+public class GeneralBot extends TelegramLongPollingBot {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(WeatherBot.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(GeneralBot.class);
     private String botUsername;
     private String botToken;
     private String openWeatherMapApiKey;

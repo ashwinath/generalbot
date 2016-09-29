@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--insert relevant apikeys/botname here-->
-    <bean id="weatherBot" class="telegram.WeatherBot">
+    <bean id="weatherBot" class="telegram.GeneralBot">
         <property name="botUsername" value="WeatherBot" />
         <property name="botToken" value="HERE" />
         <property name="openWeatherMapApiKey" value="HERE" />
