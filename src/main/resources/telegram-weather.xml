@@ -7,8 +7,8 @@
     <!--insert relevant apikeys/botname here-->
     <bean id="weatherBot" class="telegram.GeneralBot">
         <property name="botUsername" value="WeatherBot" />
-        <property name="botToken" value="***REMOVED***" />
-        <property name="openWeatherMapApiKey" value="***REMOVED***" />
+        <property name="botToken" value="HERE" />
+        <property name="openWeatherMapApiKey" value="HERE" />
     </bean>
 
 </beans>
