@@ -51,9 +51,9 @@ public class GeneralBot extends TelegramLongPollingBot {
                 sendMessageRequest.setText("No such country.");
                 LOGGER.warn("No such country.");
             }
-
-            sendMessageWithLogging(sendMessageRequest);
         }
+
+        sendMessageWithLogging(sendMessageRequest);
 
     }
 
