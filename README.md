@@ -1,5 +1,5 @@
 # Weather Bot
-Issue the command ""./gradle run" to start
+Issue the command "./gradle run" to start
 
 ## License
 
