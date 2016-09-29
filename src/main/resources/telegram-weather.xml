@@ -6,9 +6,9 @@
 
     <!--insert relevant apikeys/botname here-->
     <bean id="weatherBot" class="telegram.GeneralBot">
-        <property name="botUsername" value="WeatherBot" />
-        <property name="botToken" value="HERE" />
-        <property name="openWeatherMapApiKey" value="HERE" />
+        <property name="botUsername" value="GeneralBot" />
+        <property name="botToken" value="insert bot token" />
+        <property name="openWeatherMapApiKey" value="insert api key" />
     </bean>
 
 </beans>
