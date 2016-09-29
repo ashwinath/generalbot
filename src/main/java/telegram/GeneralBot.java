@@ -17,6 +17,7 @@ public class GeneralBot extends TelegramLongPollingBot {
     private String botToken;
     private String openWeatherMapApiKey;
 
+    @Override
     public void onUpdateReceived(Update update) {
         if(update.hasMessage()) {
             Message message = update.getMessage();
@@ -36,6 +37,7 @@ public class GeneralBot extends TelegramLongPollingBot {
             }
         }
     }
+
     private void sendWeatherDetails(String[] command, SendMessage sendMessageRequest) {
         if (command.length == 1) {
             LOGGER.info("[sendWeatherDetails] Message Received. No country specified");
