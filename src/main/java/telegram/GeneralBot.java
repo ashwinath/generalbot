@@ -20,35 +20,48 @@ public class GeneralBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if(update.hasMessage()) {
             Message message = update.getMessage();
-
+            SendMessage sendMessageRequest = new SendMessage();
+            sendMessageRequest.setChatId(message.getChatId().toString());
             String messageText = message.getText();
-            String command = StringUtils.substring(messageText, 0, 8);
-            if(message.hasText() && StringUtils.equals(command, "/weather")) {
-                SendMessage sendMessageRequest = new SendMessage();
-                sendMessageRequest.setChatId(message.getChatId().toString());
-                String country = StringUtils.substring(messageText, 9);
+            String[] command = StringUtils.split(messageText);
+            if (command.length == 0) {
+                return;
+            }
 
-                if (StringUtils.trim(country).length() == 0) {
-                    LOGGER.info("Message Received. No country specified");
-                    sendMessageRequest.setText("Please specify a country.");
-                } else {
-                    try {
-                        LOGGER.info("Message received. Country: " + country);
-                        String weatherString = TelegramUtils.getWeatherString(country, openWeatherMapApiKey);
-                        LOGGER.info("Return message: " + weatherString);
-                        sendMessageRequest.setText(weatherString);
-                    } catch (IllegalArgumentException e) {
-                        sendMessageRequest.setText("No such country.");
-                        LOGGER.warn("No such country.");
-                    }
-                }
-
-                try {
-                    sendMessage(sendMessageRequest);
-                } catch (TelegramApiException e) {
-                    LOGGER.error(e.toString());
+            switch (command[0]) {
+                case ("/weather"): {
+                    sendWeatherDetails(command, sendMessageRequest);
+                    break;
                 }
             }
+        }
+    }
+    private void sendWeatherDetails(String[] command, SendMessage sendMessageRequest) {
+        if (command.length == 1) {
+            LOGGER.info("[sendWeatherDetails] Message Received. No country specified");
+            sendMessageRequest.setText("Please specify a country.");
+        } else {
+            try {
+                String country = command[1];
+                LOGGER.info("Message received. Country: " + country);
+                String weatherString = TelegramUtils.getWeatherString(country, openWeatherMapApiKey);
+                LOGGER.info("Return message: " + weatherString);
+                sendMessageRequest.setText(weatherString);
+            } catch (IllegalArgumentException e) {
+                sendMessageRequest.setText("No such country.");
+                LOGGER.warn("No such country.");
+            }
+
+            sendMessageWithLogging(sendMessageRequest);
+        }
+
+    }
+
+    public void sendMessageWithLogging(SendMessage sendMessageRequest) {
+        try {
+            sendMessage(sendMessageRequest);
+        } catch (TelegramApiException e) {
+            LOGGER.error(e.toString());
         }
     }
 

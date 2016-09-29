@@ -4,7 +4,7 @@ version 'telegram-weather-1.0-SNAPSHOT'
 apply plugin: 'application'
 mainClassName = "telegram.MainTelegram"
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
