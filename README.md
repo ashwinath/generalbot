@@ -1,4 +1,4 @@
-# Weather Bot
+# General Bot
 Issue the command "./gradle run" to start
 
 ## License

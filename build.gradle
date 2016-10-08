@@ -1,5 +1,5 @@
-group 'telegramweather'
-version 'telegram-weather-1.0-SNAPSHOT'
+group 'generalbot'
+version 'generalbot-1.0-SNAPSHOT'
 
 apply plugin: 'application'
 mainClassName = "telegram.MainTelegram"
